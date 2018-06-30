@@ -57,7 +57,7 @@ export default Component.extend({
 	placeholder: '',
 	readOnly: false,
 	theme: 'snow',
-	toolbar: toolbar,
+  toolbar: toolbar,
 
 	// ------------------------------
 	// Set quill editor
@@ -84,13 +84,15 @@ export default Component.extend({
 
 		// Instantiate the Quill editor instance.
 
-		this.quill = new Quill(this.element, settings);
+    this.quill = new Quill(this.element, settings);
+    
+    this.sendAction('initiated', this.quill);
 
 		// Set the default delta contents if specified.
 
 		if (this.delta) this.quill.setContents(this.delta);
 
-		// Listen to events and call any specified actions.
+    // Listen to events and call any specified actions.
 
 		this.quill.on('editor-change', (event, ...args) => {
 			// eslint-disable-next-line ember/closure-actions
